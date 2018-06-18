@@ -1,0 +1,56 @@
+import socket
+from wig import wig
+import whois
+import urllib.request, json
+from wig import wig
+from flask import Flask, render_template,request
+import subprocess
+
+
+
+
+
+from datetime import datetime
+
+app = Flask(__name__)
+@app.route("/")
+def index():
+    return render_template('welcome.html')
+
+
+
+@app.route("/whois")
+def whois():
+    return render_template('whois.html')
+
+@app.route('/whoisresult', methods=['POST'])
+def scanner():
+    if request.method == 'POST':
+        try:
+            urls= request.form['url']
+            #w = whois.whois(urls)
+            whois = subprocess.run(['whois',urls],stdout=subprocess.PIPE)
+            #ping.stdout
+            w=wig.wig(url=urls)
+            w.run()
+            results = 
+            return str(results)
+         
+            
+
+
+
+
+        except :
+               return "error happened"
+
+
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+
+
+

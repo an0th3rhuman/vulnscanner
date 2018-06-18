@@ -2,7 +2,7 @@ import socket
 from wig import wig
 import whois
 import urllib.request, json
-
+from wig import wig
 from flask import Flask, render_template,request
 import subprocess
 from datetime import datetime
@@ -44,7 +44,7 @@ def dnsscanner():
             dns.stdout
             return str(dns)
         except:
-            return "error happened"
+	    return "error happened"
 
 @app.route("/nmap")
 def nmap():
@@ -54,11 +54,11 @@ def nmap():
 def nmapscanner():
     if request.method == 'POST':
         try:
-            urls= request.form['url']
-            nmap = subprocess.run(['nmap',urls],stdout=subprocess.PIPE)
-            nmap.stdout
-            return str(nmap)
-        except:
+	    urls= request.form['url']
+	    nmap = subprocess.run(['nmap','-A',urls],stdout=subprocess.PIPE)
+	    nmap.stdout
+	    return str(nmap)
+	except:
             return "error happened"
 
 
